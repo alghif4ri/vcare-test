@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Primary meta -->
+    <title>VetHome — Dokter Hewan Panggilan ke Rumah</title>
+    <meta
+      name="description"
+      content="Dokter hewan datang ke rumah Anda untuk check-up, vaksinasi, dan perawatan ringan. Layanan area Tangerang & Jakarta. Booking cepat via WhatsApp."
+    />
+    <link rel="canonical" href="https://www.vethome.id/" />
+    <meta name="theme-color" content="#0d6efd" />
+
+    <!-- Open Graph / Twitter -->
+    <meta
+      property="og:title"
+      content="VetHome — Dokter Hewan Panggilan ke Rumah"
+    />
+    <meta
+      property="og:description"
+      content="Check-up, vaksin, dan perawatan ringan tanpa harus ke klinik. Area Tangerang & Jakarta."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.vethome.id/" />
+    <meta
+      property="og:image"
+      content="/assets/images/og-image-petlover-simple.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Preconnects for performance -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://unpkg.com" crossorigin />
+
+    <!-- CSS libraries -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <!-- Favicons (replace with your files) -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <style>
+      :root {
+        scroll-behavior: smooth;
+      }
+
+      /* 1. Layout helpers */
+      main .full-screen-section {
+        min-height: 100vh;
+      }
+      [id] {
+        scroll-margin-top: 90px;
+      }
+      section {
+        padding: 70px 0;
+      }
+      @media (max-width: 992px) {
+        section {
+          padding: 60px 0;
+        }
+      }
+
+      /* 2. Navbar */
+      .navbar-brand {
+        font-size: 1.5rem;
+      }
+      .nav-link {
+        font-weight: 500;
+        padding: 0.5rem 1rem !important;
+      }
+      .nav-link:hover {
+        color: #0d6efd !important;
+      }
+      .section-divider {
+        border-top: 1px solid #e8e8e8;
+      }
+
+      /* 3. Hero */
+      .hero-bg {
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      }
+      .hero-img-wrapper-mobile {
+        width: 100%;
+        max-width: 320px;
+        min-height: 380px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #f5f7fa;
+        border-radius: 24px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        padding: 20px;
+      }
+      .hero-img-wrapper {
+        width: 100%;
+        max-width: 520px;
+        min-height: 520px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #f5f7fa;
+        border-radius: 24px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        padding: 20px;
+        margin-left: auto;
+        margin-right: 0;
+      }
+      .hero-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 20px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      }
+      .hero-name-tag {
+        position: absolute;
+        bottom: 18px;
+        left: 18px;
+        background: rgba(255, 255, 255, 0.88);
+        padding: 10px 18px;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #333;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+        backdrop-filter: blur(6px);
+      }
+      @media (max-width: 767.98px) {
+        .hero-img-wrapper {
+          min-height: 400px;
+          max-width: 90%;
+          margin: 30px auto 0;
+        }
+        .hero-bg .display-5 {
+          font-size: 2.25rem;
+        }
+        .hero-bg .lead {
+          font-size: 1rem;
+        }
+      }
+
+      /* 4. Cards */
+      .clean-card,
+      .testimonial-card {
+        background: #fff;
+        border-radius: 18px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+      .clean-card:hover,
+      .testimonial-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 26px rgba(0, 0, 0, 0.08);
+      }
+      .testimonial-card img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+      }
+      .testimonial-card p {
+        line-height: 1.6;
+      }
+
+      /* 5. CTA */
+      @media (max-width: 767.98px) {
+        .cta-container {
+          padding: 2rem 1.5rem !important;
+          text-align: center;
+        }
+        .cta-container h2 {
+          font-size: 1.75rem;
+        }
+        .cta-container .btn {
+          width: 100%;
+        }
+        .cta-container .mb-4 {
+          margin-bottom: 1.5rem !important;
+        }
+      }
+
+      /* 6. Accessibility helpers */
+      .skip-link {
+        position: absolute;
+        left: -999px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+      .skip-link:focus {
+        position: static;
+        width: auto;
+        height: auto;
+        padding: 0.5rem 1rem;
+        background: #0d6efd;
+        color: #fff;
+        z-index: 1050;
+      }
+
+      /* Respect reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        html:focus-within {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+
+    <!-- Structured data: VeterinaryCare -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VeterinaryCare",
+        "name": "VetHome",
+        "url": "https://www.vethome.id/",
+        "description": "Dokter hewan panggilan ke rumah untuk check-up, vaksinasi, dan perawatan ringan.",
+        "areaServed": ["Tangerang", "Jakarta"],
+        "telephone": "+6281234567890",
+        "image": "https://www.vethome.id/assets/og-cover.jpg",
+        "openingHours": ["Mo-Su 08:00-21:00"],
+        "sameAs": ["https://instagram.com/vethome"]
+      }
+    </script>
+  </head>
+  <body
+    data-bs-spy="scroll"
+    data-bs-target="#navbarNav"
+    data-bs-offset="90"
+    tabindex="0"
+  >
+    <a href="#main" class="skip-link">Lewati ke konten utama</a>
+
+    <header>
+      <nav
+        class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 sticky-top"
+        aria-label="Navigasi utama"
+      >
+        <div class="container">
+          <a
+            class="navbar-brand fw-bold"
+            href="index.html"
+            aria-label="Beranda VetHome"
+          >
+            <i
+              class="bi bi-heart-pulse-fill text-primary me-1"
+              aria-hidden="true"
+            ></i
+            >VetHome
+          </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigasi"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a href="#services" class="nav-link">Layanan</a>
+              </li>
+              <li class="nav-item">
+                <a href="#pricing" class="nav-link">Harga</a>
+              </li>
+              <li class="nav-item">
+                <a href="#testimoni" class="nav-link">Testimoni</a>
+              </li>
+              <li class="nav-item">
+                <a href="#cta" class="nav-link">Kontak</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero-bg d-flex align-items-center full-screen-section">
+        <div class="container">
+          <div class="row align-items-center gy-5">
+            <div
+              class="col-md-6 text-center text-md-start"
+              data-aos="fade-right"
+            >
+              <h1 class="display-5 fw-bold mb-3">
+                Dokter Hewan Datang ke Rumah Anda
+              </h1>
+              <p class="lead mb-4">
+                Vaksin, check-up ringan & perawatan dasar tanpa perlu ke klinik.
+              </p>
+
+              <div
+                class="d-flex justify-content-center d-md-none mb-4"
+                data-aos="fade-up"
+              >
+                <div class="hero-img-wrapper-mobile">
+                  <picture>
+                    <source
+                      srcset="assets/images/doc1.webp"
+                      type="image/webp"
+                    />
+                    <img
+                      src="assets/images/doc1.png"
+                      class="hero-img"
+                      alt="Dokter hewan melakukan pemeriksaan di rumah"
+                      loading="eager"
+                      fetchpriority="high"
+                    />
+                  </picture>
+                  <div class="hero-name-tag" aria-label="Nama dokter">
+                    drh. Kartika Amarilis
+                  </div>
+                </div>
+              </div>
+
+              <ul
+                class="list-unstyled mb-4 text-start d-inline-block d-md-block"
+                aria-label="Keunggulan"
+              >
+                <li>✔ Tanpa antrian</li>
+                <li>✔ Hewan lebih tenang</li>
+                <li>✔ Layanan cepat & profesional</li>
+              </ul>
+
+              <a
+                href="https://wa.me/628123456789?text=Halo%20VetHome,%20saya%20ingin%20booking%20kunjungan%20dokter%20hewan."
+                class="btn btn-success btn-lg me-2"
+                target="_blank"
+                rel="noopener"
+                aria-label="Book sekarang via WhatsApp"
+                >Book Sekarang</a
+              >
+              <a href="#services" class="btn btn-outline-secondary btn-lg"
+                >Lihat Layanan</a
+              >
+            </div>
+
+            <div
+              class="col-md-6 d-none d-md-flex justify-content-center"
+              data-aos="fade-left"
+            >
+              <div class="hero-img-wrapper">
+                <picture>
+                  <source srcset="assets/images/doc1.webp" type="image/webp" />
+                  <img
+                    src="assets/images/doc1.png"
+                    class="hero-img"
+                    alt="Dokter hewan home service"
+                    loading="eager"
+                    fetchpriority="high"
+                  />
+                </picture>
+                <div class="hero-name-tag">drh. Kartika Amarilis</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider" role="presentation"></div>
+
+      <section id="services" aria-labelledby="services-title">
+        <div class="container text-center">
+          <h2 id="services-title" class="fw-bold mb-4" data-aos="fade-up">
+            Layanan Kami
+          </h2>
+          <p class="text-muted mb-5" data-aos="fade-up" data-aos-delay="50">
+            Pemeriksaan kesehatan hewan tanpa harus keluar rumah. Nyaman, aman,
+            dan minim stres untuk hewan kesayangan Anda.
+          </p>
+
+          <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+              <article
+                class="clean-card h-100 p-4"
+                aria-label="House Call Check-Up"
+              >
+                <div class="service-icon mb-3" aria-hidden="true">
+                  <i class="bi bi-hospital fs-1 text-primary"></i>
+                </div>
+                <h3 class="h4 fw-semibold mb-2">House Call Check-Up</h3>
+                <p class="text-muted">
+                  Pemeriksaan umum, konsultasi, cek demam, luka kecil, dan
+                  tindakan ringan langsung di rumah Anda.
+                </p>
+              </article>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="150">
+              <article
+                class="clean-card h-100 p-4"
+                aria-label="Vaksinasi di Rumah"
+              >
+                <div class="service-icon mb-3" aria-hidden="true">
+                  <i class="bi bi-shield-plus fs-1 text-primary"></i>
+                </div>
+                <h3 class="h4 fw-semibold mb-2">Vaksinasi di Rumah</h3>
+                <p class="text-muted">
+                  Vaksin lengkap untuk anjing & kucing, lebih aman dan bebas
+                  stres tanpa harus datang ke klinik.
+                </p>
+              </article>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+              <article class="clean-card h-100 p-4" aria-label="Home Treatment">
+                <div class="service-icon mb-3" aria-hidden="true">
+                  <i class="bi bi-bag-heart fs-1 text-primary"></i>
+                </div>
+                <h3 class="h4 fw-semibold mb-2">Home Treatment</h3>
+                <p class="text-muted">
+                  Penanganan ringan seperti pemberian obat, kontrol pasca
+                  perawatan, dan monitoring kondisi.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider" role="presentation"></div>
+
+      <section id="pricing" aria-labelledby="pricing-title">
+        <div class="container text-center">
+          <h2 id="pricing-title" class="fw-bold mb-4" data-aos="fade-up">
+            Harga Layanan
+          </h2>
+          <p class="text-muted mb-5" data-aos="fade-up" data-aos-delay="50">
+            Biaya yang transparan dan terjangkau. Tidak ada biaya tersembunyi.
+          </p>
+
+          <div class="row g-4 justify-content-center">
+            <div class="col-md-4" data-aos="zoom-in">
+              <div class="clean-card p-4 h-100">
+                <div class="pricing-icon mb-3" aria-hidden="true">
+                  <i class="bi bi-house-heart fs-1 text-primary"></i>
+                </div>
+                <h3 class="h4 fw-semibold">Kunjungan Rumah</h3>
+                <p class="h2 my-3 text-success mb-3">Rp 120.000</p>
+                <ul class="list-unstyled text-muted small mb-4">
+                  <li class="mb-1">• Pemeriksaan ringan</li>
+                  <li class="mb-1">• Konsultasi kesehatan</li>
+                  <li class="mb-1">• Penanganan dasar</li>
+                  <li>• Tanpa biaya tambahan (area tertentu)</li>
+                </ul>
+                <a
+                  href="https://wa.me/628123456789?text=Halo%20VetHome,%20saya%20ingin%20booking%20Kunjungan%20Rumah."
+                  class="btn btn-success w-100"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Book layanan Kunjungan Rumah"
+                  >Book Layanan</a
+                >
+              </div>
+            </div>
+
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="150">
+              <div class="clean-card p-4 h-100">
+                <div class="pricing-icon mb-3" aria-hidden="true">
+                  <i class="bi bi-shield-check fs-1 text-primary"></i>
+                </div>
+                <h3 class="h4 fw-semibold">Vaksin Anjing & Kucing</h3>
+                <p class="h2 my-3 text-success mb-3">Mulai Rp 150.000</p>
+                <ul class="list-unstyled text-muted small mb-4">
+                  <li class="mb-1">• Vaksin sesuai usia & kebutuhan</li>
+                  <li class="mb-1">• Pemeriksaan singkat sebelum vaksin</li>
+                  <li class="mb-1">• Sertifikat vaksin resmi</li>
+                  <li>• Bebas stres, dilakukan di rumah</li>
+                </ul>
+                <a
+                  href="https://wa.me/628123456789?text=Halo%20VetHome,%20saya%20ingin%20tanya%20ketersediaan%20dan%20harga%20vaksin."
+                  class="btn btn-outline-success w-100"
+                  target="_blank"
+                  rel="noopener"
+                  >Cek Ketersediaan</a
+                >
+              </div>
+            </div>
+
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="250">
+              <div class="clean-card p-4 h-100">
+                <div class="pricing-icon mb-3" aria-hidden="true">
+                  <i class="bi bi-heart-pulse fs-1 text-primary"></i>
+                </div>
+                <h3 class="h4 fw-semibold">Perawatan Ringan</h3>
+                <p class="h2 my-3 text-success mb-3">Rp 50.000–150.000</p>
+                <ul class="list-unstyled text-muted small mb-4">
+                  <li class="mb-1">• Potong kuku</li>
+                  <li class="mb-1">• Cek telinga & pembersihan</li>
+                  <li class="mb-1">• Grooming ringan</li>
+                  <li>• Penanganan ringan lainnya</li>
+                </ul>
+                <a
+                  href="https://wa.me/628123456789?text=Halo%20VetHome,%20saya%20ingin%20lihat%20detail%20perawatan%20ringan."
+                  class="btn btn-outline-success w-100"
+                  target="_blank"
+                  rel="noopener"
+                  >Lihat Detail</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider" role="presentation"></div>
+
+      <section id="testimoni" aria-labelledby="testimoni-title">
+        <div class="container text-center">
+          <h2 id="testimoni-title" class="fw-bold mb-4" data-aos="fade-up">
+            Apa Kata Pemilik Hewan
+          </h2>
+          <p class="text-muted mb-5" data-aos="fade-up" data-aos-delay="50">
+            Pengalaman nyata dari pemilik hewan yang telah menggunakan layanan
+            kami.
+          </p>
+
+          <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up">
+              <figure class="testimonial-card p-4 h-100">
+                <div class="d-flex justify-content-center mb-3">
+                  <img
+                    src="https://via.placeholder.com/80"
+                    class="rounded-circle shadow-sm"
+                    alt="Foto Rina"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption>
+                  <h3 class="h5 fw-semibold mb-0">Rina • Pemilik Kucing</h3>
+                  <div
+                    class="text-warning mb-2"
+                    aria-label="Penilaian 5 dari 5"
+                  >
+                    <i class="bi bi-star-fill" aria-hidden="true"></i>
+                    <i class="bi bi-star-fill" aria-hidden="true"></i>
+                    <i class="bi bi-star-fill" aria-hidden="true"></i>
+                    <i class="bi bi-star-fill" aria-hidden="true"></i>
+                    <i class="bi bi-star-fill" aria-hidden="true"></i>
+                  </div>
+                  <p class="text-muted">
+                    “Dokternya sangat sabar. Kucing saya biasanya agresif, tapi
+                    kali ini bisa tenang.”
+                  </p>
+                </figcaption>
+              </figure>
+            </div>
+
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="150">
+              <figure class="testimonial-card p-4 h-100">
+                <div class="d-flex justify-content-center mb-3">
+                  <img
+                    src="https://via.placeholder.com/80"
+                    class="rounded-circle shadow-sm"
+                    alt="Foto Sutrisno"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption>
+                  <h3 class="h5 fw-semibold mb-0">
+                    Sutrisno • Pemilik Anjing Senior
+                  </h3>
+                  <div
+                    class="text-warning mb-2"
+                    aria-label="Penilaian 5 dari 5"
+                  >
+                    <i class="bi bi-star-fill" aria-hidden="true"></i>
+                    <i class="bi bi-star-fill" aria-hidden="true"></i>
+                    <i class="bi bi-star-fill" aria-hidden="true"></i>
+                    <i class="bi bi-star-fill" aria-hidden="true"></i>
+                    <i class="bi bi-star-fill" aria-hidden="true"></i>
+                  </div>
+                  <p class="text-muted">
+                    “Pelayanan cepat. Anjing saya tidak perlu keluar rumah,
+                    sangat membantu.”
+                  </p>
+                </figcaption>
+              </figure>
+            </div>
+
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+              <figure class="testimonial-card p-4 h-100">
+                <div class="d-flex justify-content-center mb-3">
+                  <img
+                    src="https://via.placeholder.com/80"
+                    class="rounded-circle shadow-sm"
+                    alt="Foto Maya"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption>
+                  <h3 class="h5 fw-semibold mb-0">Maya • Pemilik 3 Kucing</h3>
+                  <div
+                    class="text-warning mb-2"
+                    aria-label="Penilaian 5 dari 5"
+                  >
+                    <i class="bi bi-star-fill" aria-hidden="true"></i>
+                    <i class="bi bi-star-fill" aria-hidden="true"></i>
+                    <i class="bi bi-star-fill" aria-hidden="true"></i>
+                    <i class="bi bi-star-fill" aria-hidden="true"></i>
+                    <i class="bi bi-star-fill" aria-hidden="true"></i>
+                  </div>
+                  <p class="text-muted">
+                    “Vaksin di rumah sangat membantu, terutama untuk kucing yang
+                    takut perjalanan.”
+                  </p>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider" role="presentation"></div>
+
+      <section id="cta" class="container my-5 py-5" aria-labelledby="cta-title">
+        <div
+          class="cta-container bg-success text-white rounded-4 p-5 d-flex flex-column flex-md-row align-items-md-center justify-content-between"
+        >
+          <div class="mb-4 mb-md-0 text-center text-md-start">
+            <h2 id="cta-title" class="fw-bold mb-3">
+              Butuh Konsultasi Dokter Hewan?
+            </h2>
+            <p class="mb-0 fs-5">
+              Kami siap membantu memberikan perawatan terbaik untuk hewan
+              kesayangan Anda.
+            </p>
+          </div>
+          <a
+            href="https://wa.me/628123456789?text=Halo%20VetHome,%20saya%20ingin%20buat%20janji."
+            class="btn btn-light text-success fw-semibold px-4 py-3 rounded-3 d-inline-flex align-items-center gap-2"
+            target="_blank"
+            rel="noopener"
+            aria-label="Buat janji via WhatsApp"
+          >
+            <i class="bi bi-telephone fs-5" aria-hidden="true"></i>
+            Buat Janji Sekarang
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <div class="section-divider" role="presentation"></div>
+
+    <footer class="bg-dark text-light py-5">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-md-4">
+            <h2 class="h4 fw-bold mb-3">VetHome</h2>
+            <p class="mb-3">
+              Layanan dokter hewan panggilan ke rumah. Praktis, cepat, dan
+              terpercaya.
+            </p>
+            <div class="d-flex gap-3" aria-label="Sosial media">
+              <a
+                href="https://wa.me/628123456789"
+                class="text-light fs-4"
+                target="_blank"
+                rel="noopener"
+                aria-label="WhatsApp"
+                ><i class="bi bi-whatsapp"></i
+              ></a>
+              <a
+                href="#"
+                class="text-light fs-4"
+                target="_blank"
+                rel="noopener"
+                aria-label="Instagram"
+                ><i class="bi bi-instagram"></i
+              ></a>
+              <a
+                href="mailto:info@vethome.id"
+                class="text-light fs-4"
+                aria-label="Email"
+                ><i class="bi bi-envelope-fill"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <h3 class="h6 fw-semibold mb-3">Quick Links</h3>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a href="#services" class="text-light text-decoration-none"
+                  >Layanan</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#pricing" class="text-light text-decoration-none"
+                  >Harga</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="dokter.html" class="text-light text-decoration-none"
+                  >Dokter</a
+                >
+              </li>
+              <li>
+                <a href="#cta" class="text-light text-decoration-none"
+                  >Kontak</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-4">
+            <h3 class="h6 fw-semibold mb-3">Kontak & Jam Operasional</h3>
+            <p class="mb-1">
+              <i class="bi bi-geo-alt-fill me-2" aria-hidden="true"></i
+              >Tangerang & Jakarta
+            </p>
+            <p class="mb-1">
+              <i class="bi bi-telephone-fill me-2" aria-hidden="true"></i
+              ><a
+                class="link-light text-decoration-none"
+                href="tel:+6281234567890"
+                >0812-3456-7890</a
+              >
+            </p>
+            <p class="mb-3">
+              <i class="bi bi-envelope-at-fill me-2" aria-hidden="true"></i
+              ><a
+                class="link-light text-decoration-none"
+                href="mailto:info@vethome.id"
+                >info@vethome.id</a
+              >
+            </p>
+            <p class="small text-white-50 mb-1">Senin–Minggu: 08.00 – 21.00</p>
+            <p class="small text-white-50 mb-0">
+              Emergency Request (jika tersedia)
+            </p>
+          </div>
+        </div>
+
+        <hr class="border-secondary mt-4" />
+        <div class="text-center small text-white-50 pt-3">
+          © <span id="year"></span> VetHome • All Rights Reserved
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating WhatsApp CTA (optional) -->
+    <a
+      href="https://wa.me/628123456789?text=Halo%20VetHome"
+      class="position-fixed end-0 bottom-0 m-4 btn btn-success rounded-circle p-3 shadow"
+      style="z-index: 1030"
+      aria-label="Buka WhatsApp"
+      target="_blank"
+      rel="noopener"
+    >
+      <i class="bi bi-whatsapp fs-4" aria-hidden="true"></i>
+    </a>
+
+    <!-- JS libs (defer for performance) -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    ></script>
+    <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+      window.addEventListener("DOMContentLoaded", function () {
+        if (window.AOS)
+          AOS.init({ duration: 900, easing: "ease-out", once: true });
+      });
+    </script>
+  </body>
+</html>

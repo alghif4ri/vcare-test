@@ -129,6 +129,7 @@ nav{
 .hero-right{
   position:relative;background:var(--cream-dark);
   overflow:hidden;
+  min-height:calc(100vh - var(--nav-h));
 }
 .hero-img-bg{
   position:absolute;inset:0;
@@ -136,16 +137,22 @@ nav{
 }
 .hero-img-frame{
   position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  padding:5% 6% 0;
+  overflow:hidden;
 }
 .hero-img-frame img{
-  width:auto;max-width:90%;height:100%;
-  object-fit:contain;object-position:top center;
+  position:absolute;
+  top:0;left:50%;
+  transform:translateX(-50%);
+  width:auto;height:auto;
+  min-width:55%;max-width:82%;
+  object-fit:contain;
   filter:drop-shadow(0 20px 40px rgba(44,44,40,.15));
   animation:heroFloat 6s ease-in-out infinite;
 }
-@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes heroFloat{
+  0%,100%{transform:translateX(-50%) translateY(0)}
+  50%{transform:translateX(-50%) translateY(-12px)}
+}
 .hero-card-float{
   position:absolute;bottom:42px;left:-20px;
   background:var(--white);border-radius:16px;
@@ -480,7 +487,6 @@ footer{background:var(--charcoal);padding:70px 8% 40px;color:rgba(255,255,255,.5
 .reveal-right.visible{opacity:1;transform:none}
 .delay-1{transition-delay:.1s}.delay-2{transition-delay:.2s}.delay-3{transition-delay:.3s}.delay-4{transition-delay:.4s}
 
-/* ─── RESPONSIVE ─── */
 @media(max-width:1024px){
   .hero{grid-template-columns:1fr;min-height:auto}
   .hero-left{
@@ -489,7 +495,8 @@ footer{background:var(--charcoal);padding:70px 8% 40px;color:rgba(255,255,255,.5
     order:2;
   }
   .hero-right{
-    height:65vw;max-height:520px;min-height:300px;
+    min-height:0;
+    height:80vw;max-height:560px;
     order:1;margin-top:var(--nav-h);
   }
   .hero-card-float{left:20px;bottom:20px}
@@ -514,7 +521,7 @@ footer{background:var(--charcoal);padding:70px 8% 40px;color:rgba(255,255,255,.5
   .nav-links a{font-size:1rem}
   .nav-toggle{display:flex}
   .hero-right{
-    height:72vw;max-height:400px;min-height:260px;
+    height:90vw;max-height:420px;min-height:0;
   }
   .hero-left{padding:6% 5% 8%}
   .hero h1{font-size:clamp(2rem,7vw,3rem)}

@@ -136,12 +136,12 @@ nav{
 }
 .hero-img-frame{
   position:absolute;inset:0;
-  display:flex;align-items:flex-end;justify-content:center;
-  padding-bottom:0;
+  display:flex;align-items:center;justify-content:center;
+  padding:5% 6% 0;
 }
 .hero-img-frame img{
-  width:88%;max-width:460px;height:auto;
-  object-fit:cover;object-position:top center;
+  width:auto;max-width:90%;height:100%;
+  object-fit:contain;object-position:top center;
   filter:drop-shadow(0 20px 40px rgba(44,44,40,.15));
   animation:heroFloat 6s ease-in-out infinite;
 }
@@ -196,25 +196,49 @@ h2.section-title em{font-style:italic;color:var(--sage)}
 /* ─── ABOUT / DOCTOR PROFILE ─── */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 .about-img-wrapper{position:relative}
-.about-img-outer{
+.about-slideshow{
   border-radius:28px;overflow:hidden;
   aspect-ratio:3/4;
   background:var(--sage-pale);
+  position:relative;
 }
-.about-img-outer img{width:100%;height:100%;object-fit:cover;object-position:center top}
-.about-img-accent{
-  position:absolute;bottom:-20px;right:-20px;
-  width:55%;aspect-ratio:4/3;
-  border-radius:20px;overflow:hidden;
-  border:6px solid var(--cream);
-  background:var(--cream-dark);
+.about-slide{
+  position:absolute;inset:0;opacity:0;
+  transition:opacity .8s ease;
 }
-.about-img-accent img{width:100%;height:100%;object-fit:cover}
+.about-slide.active{opacity:1}
+.about-slide img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center top;
+  display:block;
+}
+.slide-dots{
+  position:absolute;bottom:18px;left:50%;transform:translateX(-50%);
+  display:flex;gap:7px;z-index:2;
+}
+.slide-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(255,255,255,.5);border:none;cursor:pointer;
+  transition:background .3s,transform .3s;padding:0;
+}
+.slide-dot.active{background:var(--white);transform:scale(1.25)}
+.slide-prev,.slide-next{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.75);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(6px);z-index:2;
+  transition:background .2s;
+}
+.slide-prev{left:14px}.slide-next{right:14px}
+.slide-prev:hover,.slide-next:hover{background:rgba(255,255,255,.95)}
+.slide-prev svg,.slide-next svg{width:14px;height:14px;stroke:var(--charcoal);stroke-width:2;fill:none}
 .about-tag{
   position:absolute;top:24px;left:-22px;
   background:var(--white);border-radius:14px;
   padding:14px 20px;
   box-shadow:0 10px 28px rgba(44,44,40,.1);
+  z-index:3;
 }
 .about-tag-icon{font-size:1.4rem;margin-bottom:4px}
 .about-tag-text{font-size:.75rem;color:var(--text-muted);line-height:1.4}
@@ -458,13 +482,21 @@ footer{background:var(--charcoal);padding:70px 8% 40px;color:rgba(255,255,255,.5
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:1024px){
-  .hero{grid-template-columns:1fr}
-  .hero-left{padding:14% 7% 5%;min-height:100vh;justify-content:flex-end;padding-bottom:5%}
-  .hero-right{height:55vh;order:-1;margin-top:var(--nav-h)}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-left{
+    padding:8% 7% 7%;
+    min-height:auto;justify-content:center;
+    order:2;
+  }
+  .hero-right{
+    height:65vw;max-height:520px;min-height:300px;
+    order:1;margin-top:var(--nav-h);
+  }
   .hero-card-float{left:20px;bottom:20px}
   .about-grid{grid-template-columns:1fr;gap:48px}
   .about-content{padding-left:0}
   .about-img-wrapper{max-width:440px;margin:0 auto}
+  .about-tag{left:0}
   .services-grid{grid-template-columns:1fr}
   .service-card:first-child{border-radius:24px 24px 0 0}
   .service-card:last-child{border-radius:0 0 24px 24px}
@@ -475,15 +507,33 @@ footer{background:var(--charcoal);padding:70px 8% 40px;color:rgba(255,255,255,.5
   .footer-grid{grid-template-columns:1fr 1fr;gap:40px}
 }
 @media(max-width:768px){
-  section{padding:70px 6%}
+  :root{--nav-h:64px}
+  section{padding:60px 5%}
   .nav-links{display:none;position:fixed;inset:var(--nav-h) 0 0;background:rgba(247,243,236,.97);flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;z-index:99}
   .nav-links.open{display:flex}
   .nav-links a{font-size:1rem}
   .nav-toggle{display:flex}
-  .hero-stats{gap:1.5rem}
+  .hero-right{
+    height:72vw;max-height:400px;min-height:260px;
+  }
+  .hero-left{padding:6% 5% 8%}
+  .hero h1{font-size:clamp(2rem,7vw,3rem)}
+  .hero-stats{gap:1.2rem;flex-wrap:wrap}
+  .stat-num{font-size:1.8rem}
+  .hero-card-float{left:12px;bottom:12px;padding:12px 14px;gap:10px}
+  .hero-card-name{font-size:.78rem}
+  .hero-card-title{font-size:.68rem}
+  .hero-badge{top:14px;right:14px;padding:8px 14px}
+  .hero-badge-num{font-size:1.4rem}
+  .hero-card-avatar{width:36px;height:36px}
+  .about-tag{position:static;margin-bottom:16px;display:inline-flex;gap:10px;align-items:center;padding:12px 16px}
+  .about-tag-icon{margin-bottom:0;font-size:1.2rem}
   .pricing-grid,.testi-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr;gap:32px}
   .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+  .cta-section{padding:70px 5%!important}
+  .hero-actions{flex-direction:column;align-items:flex-start}
+  .btn-primary,.btn-ghost{width:100%;justify-content:center}
 }
 </style>
 </head>
@@ -559,11 +609,31 @@ footer{background:var(--charcoal);padding:70px 8% 40px;color:rgba(255,255,255,.5
 <section id="about">
   <div class="about-grid">
     <div class="about-img-wrapper reveal-left">
-      <div class="about-img-outer">
-        <img src="assets/images/doc3.png" alt="drh. Kartika Amarilis" onerror="this.style.background='var(--sage-pale)'"/>
-      </div>
-      <div class="about-img-accent">
-        <img src="assets/images/act1.jpg" alt="Aktivitas house call" onerror="this.style.background='var(--cream-dark)'"/>
+      <div class="about-slideshow" id="aboutSlideshow">
+        <div class="about-slide active">
+          <img src="assets/images/doc3.png" alt="drh. Kartika Amarilis"/>
+        </div>
+        <div class="about-slide">
+          <img src="assets/images/act1.jpg" alt="Pemeriksaan hewan di rumah"/>
+        </div>
+        <div class="about-slide">
+          <img src="assets/images/act2.jpg" alt="Proses vaksinasi"/>
+        </div>
+        <div class="about-slide">
+          <img src="assets/images/act3.jpg" alt="Perawatan ringan"/>
+        </div>
+        <button class="slide-prev" aria-label="Sebelumnya">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="slide-next" aria-label="Berikutnya">
+          <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+        </button>
+        <div class="slide-dots">
+          <button class="slide-dot active" data-idx="0"></button>
+          <button class="slide-dot" data-idx="1"></button>
+          <button class="slide-dot" data-idx="2"></button>
+          <button class="slide-dot" data-idx="3"></button>
+        </div>
       </div>
       <div class="about-tag">
         <div class="about-tag-icon">🐾</div>
@@ -813,7 +883,7 @@ footer{background:var(--charcoal);padding:70px 8% 40px;color:rgba(255,255,255,.5
         <a href="#" class="social-link" aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
         </a>
-        <a href="mailto:info@vethome.id" class="social-link" aria-label="Email">
+        <a href="/cdn-cgi/l/email-protection#4d24232b220d3b283925222028632429" class="social-link" aria-label="Email">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </a>
       </div>
@@ -848,7 +918,7 @@ footer{background:var(--charcoal);padding:70px 8% 40px;color:rgba(255,255,255,.5
       </div>
       <div class="contact-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        <a href="mailto:info@vethome.id" style="color:rgba(255,255,255,.55);text-decoration:none">info@vethome.id</a>
+        <a href="/cdn-cgi/l/email-protection#9ef7f0f8f1dee8fbeaf6f1f3fbb0f7fa" style="color:rgba(255,255,255,.55);text-decoration:none"><span class="__cf_email__" data-cfemail="c8a1a6aea788beadbca0a7a5ade6a1ac">[email&#160;protected]</span></a>
       </div>
       <div style="margin-top:12px;font-size:.8rem;color:rgba(255,255,255,.3)">
         Senin–Minggu: 08.00–21.00
@@ -866,8 +936,38 @@ footer{background:var(--charcoal);padding:70px 8% 40px;color:rgba(255,255,255,.5
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.108.553 4.084 1.518 5.795L.057 23.571l5.9-1.549C7.742 23.001 9.822 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.909 0-3.69-.517-5.212-1.416l-.375-.22-3.488.917.928-3.411-.243-.39C2.53 15.614 2.182 13.851 2.182 12c0-5.418 4.4-9.818 9.818-9.818 5.419 0 9.818 4.4 9.818 9.818 0 5.419-4.399 9.818-9.818 9.818z"/></svg>
 </a>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 document.getElementById('year').textContent = new Date().getFullYear();
+
+// About slideshow
+(function(){
+  const ss = document.getElementById('aboutSlideshow');
+  if(!ss) return;
+  const slides = ss.querySelectorAll('.about-slide');
+  const dots = ss.querySelectorAll('.slide-dot');
+  let cur = 0, timer;
+  function go(n){
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+  }
+  function autoplay(){ timer = setInterval(()=>go(cur+1), 3500); }
+  function stop(){ clearInterval(timer); }
+  ss.querySelector('.slide-prev').addEventListener('click',()=>{stop();go(cur-1);autoplay()});
+  ss.querySelector('.slide-next').addEventListener('click',()=>{stop();go(cur+1);autoplay()});
+  dots.forEach(d=>d.addEventListener('click',()=>{stop();go(+d.dataset.idx);autoplay()}));
+  autoplay();
+
+  // touch swipe
+  let tx=0;
+  ss.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+  ss.addEventListener('touchend',e=>{
+    const dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>40){stop();go(dx<0?cur+1:cur-1);autoplay();}
+  },{passive:true});
+})();
 
 const toggle = document.getElementById('navToggle');
 const links = document.getElementById('navLinks');
@@ -887,10 +987,4 @@ links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   toggle.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity=''});
 }));
 
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') });
-}, {threshold: 0.1});
-document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => obs.observe(el));
-</script>
-</body>
-</html>
+const o
